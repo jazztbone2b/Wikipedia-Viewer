@@ -1,0 +1,74 @@
+body{
+	background-color: #b71c1c;
+	font-family: 'Proza Libre', sans-serif;
+}
+#content{
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	color: #0288d1;
+}
+input{
+	background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png');
+	background-size: 40px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+	border-radius: 15px;
+	box-sizing: 2px solid;
+	width: 200px;
+	height: 40px;
+	font-size: 15px;
+	transition: width 0.4s ease-in-out;
+	position: relative;
+	margin-top: 5px;
+}
+input:focus {
+	width: 100%;
+}
+#submit-me{
+	margin-top: 10px;
+	background-color: #ef5350;
+	border-radius: 15px;
+	color: white;
+}
+
+.fa-search{
+	color: #f44441;
+	position: relative;
+}
+#JSON-info{
+	height: min-height;
+	width: 100%;
+	margin: auto;
+	margin-top: 25px;
+	position: relative;
+}
+li{
+	list-style-type: none;
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #ef5350; 
+	color: white;
+	transition: width 1s, height 1s;
+}
+li:hover{
+	border-left: 5px solid #ff1744;
+	color: white;
+	background-color: #0288d1;
+}
+footer{
+	text-align: center;
+	color: white;
+	margin-top: 10px;
+}
+@media only screen and (max-width: 600px){
+	#JSON-info{
+		width: 350px;
+	}
+}

@@ -1,0 +1,27 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="WikiApp.css">
+  	<link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
+  	<script src="https://use.fontawesome.com/a2ca9595f0.js"></script>
+  	<script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  	<title>Wikipedia Viewer</title>
+</head>
+
+<body>
+	<div id="content">
+		<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click me if you're feeling lucky!</a>
+			<form action='#'>
+			<input id= 'search' type='search' placeholder='Search Wikipedia'><br>
+			<button type='submit' id='submit-me' onclick='searchBox();'>Submit</button>
+			</form>
+	</div>
+
+	<div id="JSON-info"></div>
+	<footer><a target='_blank' href='https://codepen.io/jazztbone2b/'>Made by Collin Banks</a></footer>
+</body>
+<script type="text/javascript" src="WikiApp.js"></script>
+</html>

@@ -1,0 +1,142 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="WikiApp.css">
+  	<link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
+  	<script src="https://use.fontawesome.com/a2ca9595f0.js"></script>
+  	<script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  	<title>Wikipedia Viewer</title>
+</head>
+
+<style>
+body{
+	background-color: #b71c1c;
+	font-family: 'Proza Libre', sans-serif;
+}
+#content{
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	color: #0288d1;
+}
+input{
+	background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png');
+	background-size: 40px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+	border-radius: 15px;
+	box-sizing: 2px solid;
+	width: 200px;
+	height: 40px;
+	font-size: 15px;
+	transition: width 0.4s ease-in-out;
+	position: relative;
+	margin-top: 5px;
+}
+input:focus {
+	width: 100%;
+}
+#submit-me{
+	margin-top: 10px;
+	background-color: #ef5350;
+	border-radius: 15px;
+	color: white;
+}
+
+.fa-search{
+	color: #f44441;
+	position: relative;
+}
+#JSON-info{
+	height: min-height;
+	width: 100%;
+	margin: auto;
+	margin-top: 25px;
+	position: relative;
+}
+li{
+	list-style-type: none;
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #ef5350; 
+	color: white;
+	transition: .5s;
+}
+li:hover{
+	border-left: 5px solid #ff1744;
+	color: white;
+	background-color: #0288d1;
+}
+footer{
+	text-align: center;
+	color: white;
+	margin-top: 10px;
+}
+@media only screen and (max-width: 600px){
+	#JSON-info{
+		width: 350px;
+	}
+}
+</style>
+
+<body>
+	<div id="content">
+		<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click me if you're feeling lucky!</a>
+			<form action='#'>
+			<input id= 'search' type='search' placeholder='Search Wikipedia'><br>
+			<button type='submit' id='submit-me' onclick='searchBox();'>Submit</button>
+			</form>
+	</div>
+
+	<div id="JSON-info"></div>
+	<footer><a target='_blank' href='https://codepen.io/jazztbone2b/'>Made by Collin Banks</a></footer>
+  
+<script>
+//come up with a function to access the search box
+function searchBox(){
+	//create the api url code
+	var urlBase = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=';
+	var searchRequest = document.querySelector('#search').value;
+	var url = urlBase + searchRequest + '&format=json&callback=wikiCallbackFunction';
+
+	//need to pull up the json data when user presses enter on the search form
+	$.ajax({
+	type: 'GET',
+	url: url,
+	async: false,
+	dataType: 'jsonp',
+	//try adding the click function here??
+	success: function(wikiResponse){
+		//heading is wikiResponse[1][0]
+		//description is wikiResponse[2][0]
+		//link is wikiResponse[3][0] 
+		document.querySelector('#JSON-info').innerHTML = (' ');
+		//checks to make sure the search term is in database
+		if (wikiResponse[3].length === 0){
+			alert('That topic cannot be found. Try searching another topic.');
+			document.querySelector('#search').value = '';
+			} else {
+				//loops through the JSON and assigns each value to each other
+				for (var i = 0; i < wikiResponse[1].length; i++){
+					$('#JSON-info').fadeOut(0);
+					$('#JSON-info').prepend("<a target='_blank' href=" + wikiResponse[3][i] + ">" + "<li>" + wikiResponse[1][i] + "<p>" + wikiResponse[2][i] + "</p></li></a>");						
+				}
+			} 
+		$('#JSON-info').fadeIn(1000);
+		}
+	});
+}
+</script>
+
+</body>
+<script type="text/javascript" src="WikiApp.js"></script>
+</html>
